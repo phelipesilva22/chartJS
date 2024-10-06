@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChartJs</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="image.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
+</head>
+<body>
+
+    <h2>Dashboard monitoramento Temperatura e Umidade</h2>  
+    <div class="container">
+        
+        <div class="chart-container">
+            <canvas id="linha"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="barra" ></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Vetor que recebe as labels (horário) para plotar no gráfico de linha no eixo X
+        const HoraTempUmidade = [
+            '12:00', 
+            '13:00', 
+            '14:00',
+            '15:00',
+            '16:00',
+            '17:00',
+    ]
+
+        // Vetor que recebe as labels (meses) para plotar no gráfico de barra no eixo X
+        const MesTempUmidade = [
+            'Janeiro',
+            'Fevereiro',
+            'Março',
+            'Abril', 
+            'Maio',
+            'Junho'
+        ]
+    
+    // Constante para receber os dados relacionado ao gŕafico de linha
+    const dadosTempUmidadeLinha = {
+        labels: HoraTempUmidade, // Recebe as labels armazenadas para o gráfico (horário)
+        datasets: [{
+            label: 'Temperatura', // Mostra o nome da label 
+            backgroundColor: 'rgb(255, 88, 132)', // define a cor do gráfico
+            borderColor: 'rgb(255, 88, 132)', // define a borda da cor do gráfico
+            data: [30, 29, 28, 25, 22, 23], // Inserção de dados mockados do exemplo de temperatura para o gŕafico de linha
+        },
+        {
+            label: 'Umidade', // Mostra o nome da label 
+            backgroundColor: 'rgb(0, 0, 255)', // define a cor do gráfico
+            borderColor: 'rgb(0, 0, 255)', // define a borda da cor do gráfico
+            data: [80, 82, 80, 85, 80, 83], // Inserção de dados mockados do exemplo de umidade para o gŕafico de linha
+        },
+    ]
+    };
+
+    // Constante para receber os dados relacionado ao gŕafico de barra
+    const dadosTempUmidadeBarra = {
+        labels: MesTempUmidade, // Recebe as labels armazenadas para o gráfico (meses)
+        datasets: [{
+            label: 'Temperatura Média', // Mostra o nome da label 
+            backgroundColor: 'rgb(255, 0, 0)', // define a cor do gráfico
+            borderColor: 'rgb(255, 0, 0)', // define a borda da cor do gráfico
+            data: [22, 24, 27, 23, 20, 18], // Inserção de dados mockados do exemplo de temperatura média para o gráfico de barra
+        },
+        {
+            label: 'Umidade Média', // Mostra o nome da label 
+            backgroundColor: 'rgb(0, 255, 0)', // define a cor do gráfico
+            borderColor: 'rgb(0, 255, 0)', // define a borda da cor do gráfico
+            data: [90, 89, 93, 87, 88, 82], // Inserção de dados mockados do exemplo de umidade média para o gráfico de barra
+        },
+    ]
+    };
+
+    // Constante que define algumas configurações relacionadas ao gráfico
+    const configTempUmidadeHora = {
+        type: 'line',
+        data: dadosTempUmidadeLinha,
+        option: {}
+    }
+
+    // Constante que define algumas configurações relacionadas ao gráfico
+    const configTempUmidadeMedia = {
+        type: 'bar',
+        data: dadosTempUmidadeBarra,
+        option: {}
+    }
+
+    </script>
+
+    <script>
+         const myChart = new Chart(
+            document.getElementById('linha'),
+            configTempUmidadeHora
+        )
+
+        const myChart2 = new Chart(
+            document.getElementById('barra'),
+            configTempUmidadeMedia
+        )
+    </script>
+
+
+</body>
+</html>
